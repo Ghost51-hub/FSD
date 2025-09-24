@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Playable Piano</title>
+  <style>
+    /* CSS */
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+
+    .piano {
+      display: flex;
+      justify-content: center;
+      position: relative;
+    }
+
+    .white-keys {
+      display: flex;
+    }
+
+    .white-key {
+      width: 60px;
+      height: 300px;
+      background-color: white;
+      border: 1px solid #ccc;
+      margin: 0 1px;
+      position: relative;
+      z-index: 1;
+      transition: background-color 0.1s ease;
+    }
+
+    .white-key:active {
+      background-color: #ddd;
+    }
+
+    .black-keys {
+      position: absolute;
+      display: flex;
+      justify-content: space-between;
+      top: 0;
+      left: 0;
+      z-index: 2;
+    }
+
+    .black-key {
+      width: 40px;
+      height: 180px;
+      background-color: black;
+      border: 1px solid #333;
+      margin-left: -20px;
+      margin-right: -20px;
+      z-index: 2;
+      transition: background-color 0.1s ease;
+    }
+
+    .black-key:active {
+      background-color: #444;
+    }
+  </style>
+</head>
+<body>
+  <div class="piano">
+    <div class="white-keys">
+      <button class="white-key" data-note="C"></button>
+      <button class="white-key" data-note="D"></button>
+      <button class="white-key" data-note="E"></button>
+      <button class="white-key" data-note="F"></button>
+      <button class="white-key" data-note="G"></button>
+      <button class="white-key" data-note="A"></button>
+      <button class="white-key" data-note="B"></button>
+      <button class="white-key" data-note="C2"></button>
+    </div>
+    <div class="black-keys">
+      <button class="black-key" data-note="C#"></button>
+      <button class="black-key" data-note="D#"></button>
+      <button class="black-key" data-note="F#"></button>
+      <button class="black-key" data-note="G#"></button>
+      <button class="black-key" data-note="A#"></button>
+    </div>
+  </div>
+
+  <script>
+    // JavaScript
+    // Mapping notes to audio files
+    const notes = {
+      'C': new Audio('https://www.soundjay.com/button/beep-07.wav'),
+      'D': new Audio('https://www.soundjay.com/button/beep-08b.wav'),
+      'E': new Audio('https://www.soundjay.com/button/beep-09.wav'),
+      'F': new Audio('https://www.soundjay.com/button/beep-10.wav'),
+      'G': new Audio('https://www.soundjay.com/button/beep-11.wav'),
+      'A': new Audio('https://www.soundjay.com/button/beep-12.wav'),
+      'B': new Audio('https://www.soundjay.com/button/beep-13.wav'),
+      'C2': new Audio('https://www.soundjay.com/button/beep-14.wav'),
+      'C#': new Audio('https://www.soundjay.com/button/beep-15.wav'),
+      'D#': new Audio('https://www.soundjay.com/button/beep-16.wav'),
+      'F#': new Audio('https://www.soundjay.com/button/beep-17.wav'),
+      'G#': new Audio('https://www.soundjay.com/button/beep-18.wav'),
+      'A#': new Audio('https://www.soundjay.com/button/beep-19.wav')
+    };
+
+    // Function to play sound for a specific note
+    function playNote(note) {
+      if (notes[note]) {
+        notes[note].currentTime = 0; // Restart the sound if it's already playing
+        notes[note].play();
+      }
+    }
+
+    // Add event listeners to buttons (for click interactions)
+    const whiteKeys = document.querySelectorAll('.white-key');
+    whiteKeys.forEach(key => {
+      key.addEventListener('click', () => {
+        const note = key.getAttribute('data-note');
+        playNote(note);
+      });
+    });
+
+    const blackKeys = document.querySelectorAll('.black-key');
+    blackKeys.forEach(key => {
+      key.addEventListener('click', () => {
+        const note = key.getAttribute('data-note');
+        playNote(note);
+      });
+    });
+
+    // Add keyboard events for physical keyboard interaction
+    document.addEventListener('keydown', (event) => {
+      switch (event.key) {
+        case 'a': playNote('C'); break;
+        case 's': playNote('D'); break;
+        case 'd': playNote('E'); break;
+        case 'f': playNote('F'); break;
+        case 'g': playNote('G'); break;
+        case 'h': playNote('A'); break;
+        case 'j': playNote('B'); break;
+        case 'k': playNote('C2'); break;
+        case 'w': playNote('C#'); break;
+        case 'e': playNote('D#'); break;
+        case 't': playNote('F#'); break;
+        case 'y': playNote('G#'); break;
+        case 'u': playNote('A#'); break;
+        default: break;
+      }
+    });
+  </script>
+</body>
+</html>

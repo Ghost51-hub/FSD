@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter App</title>
+</head>
+<body>
+    <!-- Creating a counter app having max limit of +10 and min limit of -1 via alert-->
+     <div>
+        <navbar>
+            <ul>
+                <img src="" alt="logo">
+            </ul>
+        </navbar>
+        <div style="text-align: center;">
+            <h1>Counter App</h1>
+            <p id="result">0</p> <!-- Initial value set to 0 -->
+            <button onclick="Increment()" style="width: 100px; height: 100px;">+</button>
+            <button onclick="Decrement()" style="width: 100px; height: 100px;">-</button>
+        </div>
+     </div>
+     <script>
+        function Increment(){
+            var result = document.getElementById("result");
+            var currentValue = parseInt(result.innerHTML);
+            if (currentValue >= 10) {
+                alert("Max limit reached");
+            } else {
+                result.innerHTML = currentValue + 1;
+            }
+        }
+
+        function Decrement(){
+            var result = document.getElementById("result");
+            var currentValue = parseInt(result.innerHTML);
+            if (currentValue <= -1) {
+                alert("Min limit reached");
+            } else {
+                result.innerHTML = currentValue - 1;
+            }
+        }
+     </script>
+</body>
+</html>
