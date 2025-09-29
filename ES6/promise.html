@@ -7,21 +7,26 @@
 
 <body>
     <script>
-        const mypromise = new Promise((resolve, reject) => {
-            const password = "hasnain@123";
-            if (password > 8) {
-                resolve("Password length is ok");
-            }
-            else {
-                reject("Password length is short");
-            }
-        })
-        console.log(mypromise);
+        // const mypromise = new Promise((resolve, reject) => {
+        //     const password = "hasnain@123";
+        //     if (password > 8) {
+        //         resolve("Password length is ok");
+        //     }
+        //     else {
+        //         reject("Password length is short");
+        //     }
+        // })
+        // console.log(mypromise);
 
-        mypromise.then((msg) => {
-            console.log(msg);
-        }).catch((error) => {
-            console.log(error);
+        // mypromise.then((msg) => {
+        //     console.log(msg);
+        // }).catch((error) => {
+        //     console.log(error);
+        // })
+        mypromise.catch((error) => {
+        })
+        .finally(() => {
+            console.log("Promise is done");
         })
     </script>
 </body>
